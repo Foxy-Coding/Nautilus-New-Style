@@ -19,5 +19,11 @@ public final class Constants {
 
   public static class CANIds{
     public static final int iElevator = 21;
+    public static final int iTilterA = 23;
+    public static final int iTilterB = 24;
+    public static final int iAlgaeIntake = 25;
+    public static final int iCoralIntake = 26;
+    public static final int iGroundPivot = 28;
+    public static final int iGroundIntake = 31;
   }
 }
