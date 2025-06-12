@@ -2,11 +2,12 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package 
+package frc.robot.subsystems;
 
 import com.ctre.phoenix6.StatusCode;
 import com.ctre.phoenix6.StatusSignal;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
@@ -24,6 +25,7 @@ public class Elevator extends SubsystemBase {
   private StatusCode objElevatorStatusCode;
   @SuppressWarnings("rawtypes")
   private  StatusSignal objElevatorStatusSignal;
+  private MotionMagicVoltage objMMV = new MotionMagicVoltage(0);
 
   public Elevator() {
 
@@ -76,6 +78,8 @@ public class Elevator extends SubsystemBase {
     SmartDashboard.getNumber("Elevator Acceleration", getElevatorAcceleration());
   }
 
+  // === SmartDashboard Values === \\
+
   public double getElevatorPosition(){
     objElevatorStatusSignal = objElevatorWinch.getPosition();
     return objElevatorStatusSignal.getValueAsDouble();
@@ -90,22 +94,18 @@ public class Elevator extends SubsystemBase {
     objElevatorStatusSignal = objElevatorWinch.getAcceleration();
     return objElevatorStatusSignal.getValueAsDouble();
   }
-}
 
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
+  // === Functional Commands === \\
 
-package frc.robot.subsystems;
+  public void runTargetMM(double dTarget){
+    objElevatorWinch.setControl(objMMV.withPosition(dTarget).withSlot(0));
+  }
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+  public void runElevator(double dSpeed){
+    objElevatorWinch.set(dSpeed);
+  }
 
-public class Elevator extends SubsystemBase {
-  /** Creates a new Elevator. */
-  public Elevator() {}
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  public void stopElevator(){
+    objElevatorWinch.stopMotor();
   }
 }
