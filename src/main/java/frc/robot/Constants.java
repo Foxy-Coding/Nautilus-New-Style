@@ -26,4 +26,11 @@ public final class Constants {
     public static final int iGroundPivot = 28;
     public static final int iGroundIntake = 31;
   }
+
+  public static class MotorSpeeds{
+    public static final double dGroundCoralPositive = 0.2;
+    public static final double dGroundCoralNegative = -0.2;
+
+    public static final double dCoralHold = 0.04;
+  }
 }

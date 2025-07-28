@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.subsystems.Coral;
+package frc.robot.subsystems.BasePlate;
 
 import com.ctre.phoenix6.StatusCode;
 import com.ctre.phoenix6.StatusSignal;
@@ -13,6 +13,7 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.CANIds;
+import frc.robot.Constants.MotorSpeeds;
 
 public class GroundCoral extends SubsystemBase {
   /** Creates a new GroundIntake. */
@@ -41,8 +42,12 @@ public class GroundCoral extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void runGroundCoral(double dSpeed){
-    objGroundCoral.set(dSpeed);
+  public void runGroundCoralPos(){
+    objGroundCoral.set(MotorSpeeds.dGroundCoralPositive);
+  }
+
+  public void runGroundCoralNeg(){
+    objGroundCoral.set(MotorSpeeds.dGroundCoralNegative);
   }
 
   public void stopMotor(){
